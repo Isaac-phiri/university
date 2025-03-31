@@ -1,0 +1,342 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<style>
+    /* Course Page Styles */
+    .course-header {
+        color: #03093D;
+        margin-bottom: 30px;
+    }
+    .course-title {
+        font-size: 2.7rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+    }
+    .course-meta {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    .course-image {
+        width: 100%;
+        height: 500px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    .course-tabs {
+        display: flex;
+        border-bottom: 2px solid #ddd;
+        margin-bottom: 25px;
+    }
+    .course-tab {
+        flex: 1;
+        text-align: center;
+        padding: 12px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        color: #555;
+    }
+    .course-tab::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: #03093D;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+    .course-tab.active {
+        color: #03093D;
+    }
+    .course-tab.active::after {
+        transform: scaleX(1);
+    }
+    .course-content {
+        display: none;
+    }
+    .course-content.active {
+        display: block;
+    }
+    .content-list {
+        padding-left: 30px;
+    }
+    .content-list li {
+        padding: 8px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .module-item {
+        margin-bottom: 15px;
+        padding: 15px;
+        background: #f9f9f9;
+        border-radius: 5px;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Left Side (8 columns) - Course Details -->
+        <div class="col-md-8">
+            <div class="course-header">
+                <h1 class="course-title">Bachelor of Science in Computer Science</h1>
+                
+                <img src="https://images.unsplash.com/photo-1551033406-611cf9a28f67?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                     alt="Computer Science Course" class="course-image">
+            
+                <div class="course-meta">
+                  <div>
+                      <strong>Credits:</strong> 120
+                  </div>
+                  <div>
+                      <strong>Duration:</strong> 3 Years
+                  </div>
+                  <div>
+                      <strong>Intakes:</strong> January, May, September
+                  </div>
+              </div>
+                <p class="lead">
+                    This comprehensive Computer Science degree provides students with a solid foundation in computing principles, 
+                    programming languages, and system design. Graduates will be equipped with the skills needed for careers 
+                    in software development, data analysis, and IT systems management.
+                </p>
+            </div>
+            
+            <h2 class="mt-5 mb-4" style="color: #03093D;">Course Overview</h2>
+            
+            <!-- Course Tabs Navigation -->
+            <div class="course-tabs">
+                <button class="course-tab active" data-target="objectives">Course Objectives</button>
+                <button class="course-tab" data-target="structure">Course Structure</button>
+                <button class="course-tab" data-target="requirements">Entry Requirements</button>
+            </div>
+            
+            <!-- Course Content Sections -->
+            <div id="objectives" class="course-content active">
+                <h3 style="color: #03093D;">What You Will Learn</h3>
+                <ul class="content-list">
+                    <li>Fundamentals of computer programming and algorithm design</li>
+                    <li>Database systems and information management</li>
+                    <li>Computer networks and cybersecurity principles</li>
+                    <li>Software engineering methodologies</li>
+                    <li>Artificial intelligence and machine learning concepts</li>
+                    <li>Web and mobile application development</li>
+                    <li>Data structures and computational theory</li>
+                </ul>
+            </div>
+            
+            <div id="structure" class="course-content">
+                <h3 style="color: #03093D;">Program Structure</h3>
+                
+                <h4 class="mt-4">Year 1</h4>
+                <div class="module-item">
+                    <strong>Core Modules:</strong>
+                    <ul>
+                        <li>Introduction to Programming</li>
+                        <li>Computer Systems Fundamentals</li>
+                        <li>Discrete Mathematics</li>
+                        <li>Web Development Basics</li>
+                    </ul>
+                </div>
+                
+                <h4 class="mt-4">Year 2</h4>
+                <div class="module-item">
+                    <strong>Core Modules:</strong>
+                    <ul>
+                        <li>Data Structures and Algorithms</li>
+                        <li>Database Systems</li>
+                        <li>Operating Systems</li>
+                        <li>Software Engineering</li>
+                    </ul>
+                </div>
+                
+                <h4 class="mt-4">Year 3</h4>
+                <div class="module-item">
+                    <strong>Core Modules:</strong>
+                    <ul>
+                        <li>Artificial Intelligence</li>
+                        <li>Computer Networks</li>
+                        <li>Final Year Project</li>
+                        <li>Professional Practice</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="requirements" class="course-content">
+                <h3 style="color: #03093D;">Entry Requirements</h3>
+                <ul class="content-list">
+                    <li>High School Diploma with minimum B grades in Mathematics and Science</li>
+                    <li>English language proficiency (IELTS 6.0 or equivalent)</li>
+                    <li>Personal statement demonstrating interest in computing</li>
+                    <li>Two academic references</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Right Side (4 columns) - Application Form -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body" style="background: #eeeeee;">
+                    <h3 class="card-title mb-4">Apply for This Course</h3>
+                    <form>
+                      <!-- Course Selection -->
+                      <div class="form-group">
+                        <label for="course">What course would you like to apply for?</label>
+                        <select class="form-control" id="course" required>
+                          <option value="">Select a course</option>
+                          <option value="course1">Course 1</option>
+                          <option value="course2">Course 2</option>
+                          <option value="course3">Course 3</option>
+                        </select>
+                      </div>
+        
+                      <!-- Name -->
+                      <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                      </div>
+        
+                      <!-- Email -->
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                      </div>
+        
+                      <!-- Phone -->
+                      <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+                      </div>
+        
+                      <!-- Gender -->
+                      <div class="form-group">
+                        <label>Gender</label>
+                        <div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+                            <label class="form-check-label" for="male">Male</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
+                            <label class="form-check-label" for="female">Female</label>
+                          </div>
+                        </div>
+                      </div>
+        
+                      <!-- Physical Address -->
+                      <div class="form-group">
+                        <label for="address">Physical Address</label>
+                        <input type="text" class="form-control" id="address" placeholder="Enter your physical address" required>
+                      </div>
+        
+                      <!-- Select Country -->
+                      <div class="form-group">
+                        <label for="country">Select Country</label>
+                        <select class="form-control" id="country" required>
+                          <option value="">Select your country</option>
+                          <option value="usa">United States</option>
+                          <option value="uk">United Kingdom</option>
+                          <option value="canada">Canada</option>
+                          <!-- Add more countries as needed -->
+                        </select>
+                      </div>
+        
+                      <!-- Nationality -->
+                      <div class="form-group">
+                        <label for="nationality">Nationality</label>
+                        <input type="text" class="form-control" id="nationality" placeholder="Enter your nationality" required>
+                      </div>
+        
+                      <!-- Upload National ID -->
+                      <div class="form-group">
+                        <label>Upload your national ID below</label>
+                        <div class="file-upload" id="fileUpload">
+                          <p>Drag & Drop Files Here</p>
+                          <p>or</p>
+                          <p>Browse Files</p>
+                          <input type="file" id="file" style="display: none;" required>
+                          <p class="mt-2"><span id="fileCount">0</span> of 1</p>
+                        </div>
+                      </div>
+        
+                      <!-- Date of Birth -->
+                      <div class="form-group">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" class="form-control" id="dob" placeholder="mm/dd/yyyy" required>
+                      </div>
+        
+                      <!-- Select Intake -->
+                      <div class="form-group">
+                        <label for="intake">Select Intake</label>
+                        <select class="form-control" id="intake" required>
+                          <option value="">Select intake</option>
+                          <option value="january">January</option>
+                          <option value="may">May</option>
+                          <option value="september">September</option>
+                        </select>
+                      </div>
+        
+                      <!-- Select Mode of Delivery -->
+                      <div class="form-group">
+                        <label for="deliveryMode">Select Mode of Delivery</label>
+                        <select class="form-control" id="deliveryMode" required>
+                          <option value="">Select mode of delivery</option>
+                          <option value="online">Online</option>
+                          <option value="onsite">Onsite</option>
+                          <option value="hybrid">Hybrid</option>
+                        </select>
+                      </div>
+        
+                      <!-- How did you hear about Cavendish University -->
+                      <div class="form-group">
+                        <label for="hearAbout">How did you hear about Cavendish University?</label>
+                        <textarea class="form-control" id="hearAbout" rows="3" placeholder="Enter your response" required></textarea>
+                      </div>
+        
+                      <!-- Your Message/Questions -->
+                      <div class="form-group">
+                        <label for="message">Your message/questions</label>
+                        <textarea class="form-control" id="message" rows="3" placeholder="Enter your message" required></textarea>
+                      </div>
+        
+                      <!-- Submit Button -->
+                      <button type="submit" class="btn btn btn-block" style="background-color: #03093D; color:white">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript for Course Tabs -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Tab functionality
+    const tabs = document.querySelectorAll('.course-tab');
+    const contents = document.querySelectorAll('.course-content');
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const target = this.getAttribute('data-target');
+            
+            // Remove active classes
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            
+            // Add active classes
+            this.classList.add('active');
+            document.getElementById(target).classList.add('active');
+        });
+    });
+});
+</script>
+
+{% endblock content %}

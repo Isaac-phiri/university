@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <div class="mb-4">
+                        <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+                    </div>
+                    <h1 class="card-title mb-3">Application Submitted Successfully!</h1>
+                    <p class="card-text lead mb-4">
+                        Thank you for submitting your application. We have received your information and will review it shortly.
+                    </p>
+                    <p class="mb-4">
+                        A confirmation email has been sent to your email address with further instructions.
+                        Please check your inbox (and spam folder) for this email.
+                    </p>
+                    <p class="text-muted mb-4">
+                        Your application reference number: <strong>{{ request.session.application_id|default:"N/A" }}</strong>
+                    </p>
+                    <div class="mt-4">
+                        <a href="{% url 'homepage' %}" class="btn btn-primary btn-lg">Return to Home</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mt-4 shadow">
+                <div class="card-body">
+                    <h4 class="card-title">What happens next?</h4>
+                    <ol class="mt-3">
+                        <li class="mb-2">Our admissions team will review your application within 5-7 business days.</li>
+                        <li class="mb-2">You may be contacted for additional information or to schedule an interview.</li>
+                        <li class="mb-2">Once a decision is made, you will be notified via email.</li>
+                        <li class="mb-2">If accepted, you will receive instructions on how to complete your enrollment.</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <p>If you have any questions, please contact our admissions office:</p>
+                <p><strong>Email:</strong> admissions@example.edu | <strong>Phone:</strong> (123) 456-7890</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

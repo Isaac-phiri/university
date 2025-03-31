@@ -1,0 +1,479 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+    .admission-header {
+        background: linear-gradient(rgba(3, 9, 61, 0.8), rgba(3, 9, 61, 0.8)), 
+                    url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 100px 0;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    .admission-title {
+        color: white;
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+    }
+    .section-title {
+        color: #03093D;
+        font-weight: 700;
+        margin: 40px 0 20px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 80px;
+        height: 4px;
+        background: #FF6B00;
+    }
+    /* Add to your CSS */
+    .section-title::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 0;
+        width: 80px;
+        height: 3px;
+        background: #03093D;
+    }
+    .requirement-card {
+        border-left: 4px solid #03093D;
+        padding: 20px;
+        margin-bottom: 20px;
+        background: #f9f9f9;
+        transition: all 0.3s ease;
+    }
+    .requirement-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .download-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 30px;
+        text-align: center;
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+    .download-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .download-icon {
+        font-size: 3rem;
+        color: #03093D;
+        margin-bottom: 20px;
+    }
+    .policy-card {
+        background: #f0f4f8;
+        padding: 30px;
+        border-radius: 8px;
+        margin-top: 30px;
+    }
+    .policy-item {
+        margin-bottom: 15px;
+        padding-left: 20px;
+        position: relative;
+    }
+    .policy-item::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: #FF6B00;
+        font-weight: bold;
+    }
+</style>
+
+<!-- Hero Section -->
+<div class="admission-header">
+    <div class="container">
+        <h1 class="admission-title">Admissions</h1>
+        <p class="lead">Begin your academic journey with us. Explore our admission requirements and application process.</p>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Application Requirements -->
+    <section>
+        <h2 class="section-title">Application Requirements</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="requirement-card">
+                    <h4>Undergraduate Programs</h4>
+                    <ul>
+                        <li>Completed secondary education</li>
+                        <li>Official high school transcripts</li>
+                        <li>Minimum GPA of 2.5</li>
+                        <li>English proficiency test results (if applicable)</li>
+                        <li>Personal statement (500 words)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="requirement-card">
+                    <h4>Graduate Programs</h4>
+                    <ul>
+                        <li>Bachelor's degree from accredited institution</li>
+                        <li>Official university transcripts</li>
+                        <li>Minimum GPA of 3.0</li>
+                        <li>Two letters of recommendation</li>
+                        <li>Statement of purpose</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="requirement-card">
+                    <h4>International Students</h4>
+                    <ul>
+                        <li>Valid passport</li>
+                        <li>Student visa</li>
+                        <li>TOEFL/IELTS scores</li>
+                        <li>Financial support documentation</li>
+                        <li>Health insurance</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="requirement-card">
+                    <h4>Transfer Students</h4>
+                    <ul>
+                        <li>Official transcripts from all institutions</li>
+                        <li>Course descriptions for transfer credits</li>
+                        <li>Good academic standing</li>
+                        <li>Letter of recommendation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Application Form -->
+    <section>
+        <h2 class="section-title">Application Forms</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h4>Undergraduate Application</h4>
+                    <p>For bachelor's degree programs</p>
+                    <a href="{% static 'docs/undergrad_application.pdf' %}" class="btn  mt-3" style="background-color: #03093D; color: white;" download>
+                        Download Form
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h4>Graduate Application</h4>
+                    <p>For master's degree programs</p>
+                    <a href="{% static 'docs/graduate_application.pdf' %}" class="btn mt-3" style="background-color: #03093D; color: white;" download>
+                        Download Form
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h4>International Application</h4>
+                    <p>For non-resident students</p>
+                    <a href="{% static 'docs/international_application.pdf' %}" class="btn  mt-3" style="background-color: #03093D; color: white;" download>
+                        Download Form
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Online Application Section -->
+    <section>
+        <h2 class="section-title">Online Application</h2>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Apply Online Now</h4>
+                        <p>Complete our online application form and submit all required documents electronically.</p>
+                        <ul>
+                            <li>Faster processing time</li>
+                            <li>Track your application status</li>
+                            <li>Secure document upload</li>
+                            <li>Instant confirmation</li>
+                        </ul>
+                        <a href="#apply-online" class="btn " style="background-color: #03093D; color: white;">Start Online Application</a>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                             alt="Online Application" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Policy -->
+    <section>
+        <h2 class="section-title">Application Policy</h2>
+        <div class="policy-card">
+            <h4>Admissions Policy and Procedures</h4>
+            <div class="policy-item">All applications must be submitted by the published deadlines</div>
+            <div class="policy-item">Application fees are non-refundable</div>
+            <div class="policy-item">Incomplete applications will not be processed</div>
+            <div class="policy-item">All submitted documents become property of the university</div>
+            <div class="policy-item">False information will result in automatic rejection</div>
+            <div class="policy-item">Admission decisions are final and cannot be appealed</div>
+            <div class="policy-item">Deferred admission may be granted under special circumstances</div>
+            <div class="policy-item">Transfer credits are evaluated after admission</div>
+            
+            <h5 class="mt-4">Application Deadlines</h5>
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>Intake</th>
+                        <th>Application Deadline</th>
+                        <th>Classes Begin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>January</td>
+                        <td>November 30</td>
+                        <td>January 15</td>
+                    </tr>
+                    <tr>
+                        <td>May</td>
+                        <td>March 31</td>
+                        <td>May 10</td>
+                    </tr>
+                    <tr>
+                        <td>September</td>
+                        <td>July 31</td>
+                        <td>September 5</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Online Application Form (anchor target) -->
+    <section id="apply-online" class="mt-5">
+        <div class="card">
+            <div class="card-header" style="background-color: #03093D; color:rgb(255, 255, 255);">
+                <h3 class="mb-0" style=" color:rgb(255, 255, 255);">Online Application Form</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="course">What course would you like to apply for?</label>
+                        <select class="form-control" id="course" required>
+                            <option value="">Select a course</option>
+                            <option value="course1">Course 1</option>
+                            <option value="course2">Course 2</option>
+                            <option value="course3">Course 3</option>
+                        </select>
+                    </div>
+    
+                    <!-- Name -->
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                    </div>
+    
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                    </div>
+    
+                    <!-- Phone -->
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+    
+                    <!-- Gender -->
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+                            <label class="form-check-label" for="male">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
+                            <label class="form-check-label" for="female">Female</label>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Physical Address -->
+                    <div class="form-group">
+                        <label for="address">Physical Address</label>
+                        <input type="text" class="form-control" id="address" placeholder="Enter your physical address" required>
+                    </div>
+    
+                    <!-- Select Country -->
+                    <div class="form-group">
+                        <label for="country">Select Country</label>
+                        <select class="form-control" id="country" required>
+                            <option value="">Select your country</option>
+                            <option value="usa">United States</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="canada">Canada</option>
+                            <!-- Add more countries as needed -->
+                        </select>
+                    </div>
+    
+                    <!-- Nationality -->
+                    <div class="form-group">
+                        <label for="nationality">Nationality</label>
+                        <input type="text" class="form-control" id="nationality" placeholder="Enter your nationality" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload Required Documents:</label>
+                        <div class="file-upload" id="fileUpload">
+                            <p>Drag & Drop Files Here</p>
+                            <p>or</p>
+                            <p><a href="#" id="browseFiles">Browse Files</a></p>
+                            <input type="file" id="fileInput" multiple style="display: none;">
+                            <div id="fileList" class="mt-3"></div>
+                        </div>
+                    </div>
+                    <div class="form-check mb-4">
+                        <input class="form-check-input" type="checkbox" id="policyCheck" required>
+                        <label class="form-check-label" for="policyCheck">
+                            I have read and agree to the application policy
+                        </label>
+                    </div>
+                    <!-- Date of Birth -->
+                    <div class="form-group">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" class="form-control" id="dob" placeholder="mm/dd/yyyy" required>
+                      </div>
+        
+                      <!-- Select Intake -->
+                      <div class="form-group">
+                        <label for="intake">Select Intake</label>
+                        <select class="form-control" id="intake" required>
+                          <option value="">Select intake</option>
+                          <option value="january">January</option>
+                          <option value="may">May</option>
+                          <option value="september">September</option>
+                        </select>
+                      </div>
+        
+                      <!-- Select Mode of Delivery -->
+                      <div class="form-group">
+                        <label for="deliveryMode">Select Mode of Delivery</label>
+                        <select class="form-control" id="deliveryMode" required>
+                          <option value="">Select mode of delivery</option>
+                          <option value="online">Online</option>
+                          <option value="onsite">Onsite</option>
+                          <option value="hybrid">Hybrid</option>
+                        </select>
+                      </div>
+        
+                      <!-- How did you hear about Cavendish University -->
+                      <div class="form-group">
+                        <label for="hearAbout">How did you hear about Cavendish University?</label>
+                        <textarea class="form-control" id="hearAbout" rows="3" placeholder="Enter your response" required></textarea>
+                      </div>
+        
+                      <!-- Your Message/Questions -->
+                      <div class="form-group">
+                        <label for="message">Your message/questions</label>
+                        <textarea class="form-control" id="message" rows="3" placeholder="Enter your message" required></textarea>
+                      </div>
+                    <button type="submit" class="btn btn-primary btn-block" style="background-color: #03093D; color: white;">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- JavaScript for file upload -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const fileUpload = document.getElementById('fileUpload');
+    const browseFiles = document.getElementById('browseFiles');
+    const fileInput = document.getElementById('fileInput');
+    const fileList = document.getElementById('fileList');
+
+    // Click on the upload area
+    fileUpload.addEventListener('click', function() {
+        fileInput.click();
+    });
+
+    // Click on browse link
+    browseFiles.addEventListener('click', function(e) {
+        e.stopPropagation();
+        fileInput.click();
+    });
+
+    // File selection
+    fileInput.addEventListener('change', function() {
+        updateFileList();
+    });
+
+    // Drag and drop
+    fileUpload.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        fileUpload.classList.add('dragover');
+    });
+
+    fileUpload.addEventListener('dragleave', function() {
+        fileUpload.classList.remove('dragover');
+    });
+
+    fileUpload.addEventListener('drop', function(e) {
+        e.preventDefault();
+        fileUpload.classList.remove('dragover');
+        fileInput.files = e.dataTransfer.files;
+        updateFileList();
+    });
+
+    function updateFileList() {
+        fileList.innerHTML = '';
+        if (fileInput.files.length > 0) {
+            const list = document.createElement('ul');
+            list.className = 'list-group';
+            
+            for (let i = 0; i < fileInput.files.length; i++) {
+                const item = document.createElement('li');
+                item.className = 'list-group-item d-flex justify-content-between align-items-center';
+                item.innerHTML = `
+                    ${fileInput.files[i].name}
+                    <span class="badge bg-primary rounded-pill">${formatFileSize(fileInput.files[i].size)}</span>
+                `;
+                list.appendChild(item);
+            }
+            
+            fileList.appendChild(list);
+        }
+    }
+
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+    }
+});
+</script>
+{% endblock %}
